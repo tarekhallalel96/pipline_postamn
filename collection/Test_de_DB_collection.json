@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "12b57815-1c79-47a9-a7ac-b2cdf067a3a5",
+		"name": "Test_de_DB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42585253"
+	},
+	"item": [
+		{
+			"name": "demande_login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Statut 201 - \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"la saisi de lutilisateur\", function () {",
+							"    let jsonData = pm.response.json();",
+							"",
+							"    pm.collectionVariables.set(\"token\", jsonData.access);",
+							"",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\":\"tarek2ffffff\",\n\"password\":\"azerty\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/login/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ecriture dun commentaire(positif)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Statut 201 - \", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"la saisi de lutilisateur\", function () {",
+							"    let jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData).to.have.property(\"content\");",
+							"",
+							"});",
+							"",
+							"pm.test(\"Statut 200 - \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"content\" : \"ioooooooooooooooooooooooooooo \"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/posts/1/comments/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"posts",
+						"1",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ecriture dun commentaire(positif) Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/posts/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

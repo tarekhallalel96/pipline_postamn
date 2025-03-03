@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "97cb522c-1f02-4067-978a-4552884a7768",
+		"name": "Post_register",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42585253"
+	},
+	"item": [
+		{
+			"name": "register(positif)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let rnd_password = pm.variables.replaceIn(\"{{$randomPassword}}\")",
+							"// let mon_rnd_firstname = pm.variables.replaceIn(\"{{$randomFirstName}}\")",
+							"// let mon_rnd_lastname = pm.variables.replaceIn(\"{{$randomLastName}}\")",
+							"",
+							"pm.collectionVariables.set(\"mon_rnd_password\",rnd_password)",
+							"// pm.collectionVariables.set(\"mon_rnd_lastname\",mon_rnd_lastname)",
+							"// pm.collectionVariables.set(\"mon_rnd_mail\", `${mon_rnd_firstname}`.toLowerCase()+\".\"+`${mon_rnd_lastname}`.toLowerCase()+(Math.random().toPrecision(4)*10000)+\"@gmail.com\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Statut 201 - \", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"L'utilisateur a les bonnes informations\", function () {",
+							"    let jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData).to.have.property(\"username\");",
+							"    pm.expect(jsonData).to.have.property(\"email\");",
+							"    pm.expect(jsonData).to.have.property(\"password\");",
+							"    pm.expect(jsonData).to.have.property(\"job\");",
+							"    pm.expect(jsonData).to.have.property(\"about_me\");",
+							"    pm.collectionVariables.set(\"id\", jsonData.id);",
+							"});",
+							"// pm.test(\"verify value  sur l'egalité \",function(){",
+							"",
+							"    ",
+							"//     const rqbd = JSON.parse(pm.request.body.raw)",
+							"//     pm.expect(pm.reponse.json().employee.nom).to.equal(rqpd.nom)",
+							"// })",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": {{$randomUserName}},\n  \"email\": {{$randomEmail}},\n  \"password1\": \"{{mon_rnd_password}}\",\n  \"password2\": \"{{mon_rnd_password}}\",\n  \"job\" : {{$randomJobTitle}},\n  \"about_me\" : {{$randomJobDescriptor}}\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/register/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registerWithoutUsername",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let rnd_password = pm.variables.replaceIn(\"{{$randomPassword}}\")",
+							"// let mon_rnd_firstname = pm.variables.replaceIn(\"{{$randomFirstName}}\")",
+							"// let mon_rnd_lastname = pm.variables.replaceIn(\"{{$randomLastName}}\")",
+							"",
+							"pm.collectionVariables.set(\"mon_rnd_password\",rnd_password)",
+							"// pm.collectionVariables.set(\"mon_rnd_lastname\",mon_rnd_lastname)",
+							"// pm.collectionVariables.set(\"mon_rnd_mail\", `${mon_rnd_firstname}`.toLowerCase()+\".\"+`${mon_rnd_lastname}`.toLowerCase()+(Math.random().toPrecision(4)*10000)+\"@gmail.com\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": {{$randomUserName}},\n  \"email\": {{$randomEmail}},\n  \"password1\": \"{{mon_rand_password}}\",\n  \"password2\": \"{{mon_rand_password}}\",\n  \"job\" : {{$randomJobTitle}},\n  \"about_me\" : {{$randomJobDescriptor}}\n  \n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/register/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register(positif) Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let rnd_password = pm.variables.replaceIn(\"{{$randomPassword}}\")",
+							"// let mon_rnd_firstname = pm.variables.replaceIn(\"{{$randomFirstName}}\")",
+							"// let mon_rnd_lastname = pm.variables.replaceIn(\"{{$randomLastName}}\")",
+							"",
+							"pm.collectionVariables.set(\"mon_rnd_password\",rnd_password)",
+							"// pm.collectionVariables.set(\"mon_rnd_lastname\",mon_rnd_lastname)",
+							"// pm.collectionVariables.set(\"mon_rnd_mail\", `${mon_rnd_firstname}`.toLowerCase()+\".\"+`${mon_rnd_lastname}`.toLowerCase()+(Math.random().toPrecision(4)*10000)+\"@gmail.com\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": {{$randomUserName}},\n  \"email\": {{$randomEmail}},\n  \"password1\": \"{{mon_rand_password}}\",\n  \"password2\": \"{{mon_rand_password}}\",\n  \"job\" : {{$randomJobTitle}},\n  \"about_me\" : {{$randomJobDescriptor}}\n  \n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/register/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ecriture dun commentaire(negatif)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/posts/1/register/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"posts",
+						"1",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Statut 200 - \", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"je recupere les informations\", function () {",
+							"    is_present = false;",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('array');",
+							"    for (post of jsonData){",
+							"        if (post.id == pm.collectionVariables.get(\"id\")){",
+							"            is_present = true;",
+							"            id = post.id;",
+							"            content = post.content ;",
+							"            title= post.title ;",
+							"            break",
+							"",
+							"        }",
+							"",
+							"    }})",
+							"        pm.expect(is_present).to.be.true",
+							"        // Affiche les commentaires dans la console",
+							"//         console.log(\"Commentaires dans la réponse:\", item.comments);",
+							"//         console.log(\"Commentaires de la variable de collection:\", pm.collectionVariables.get(\"comments\"));",
+							"",
+							"//         // Comparer les commentaires avec la variable de collection \"comments\"",
+							"//         // On vérifie si l'array \"comments\" est égal à la variable de collection",
+							"//         pm.expect(item.comments).to.eql(pm.collectionVariables.get(\"comments\"));",
+							"//     });",
+							"// });",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.1.95:9091/api/posts",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"95"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "mon_rnd_password",
+			"value": ""
+		}
+	]
+}
